@@ -1,4 +1,3 @@
-
 import React from "react";
 import { AppBar, Toolbar, Box, Button, useTheme } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
@@ -16,14 +15,14 @@ export default function NavBar() {
         left: "50%",
         transform: "translateX(-50%)",
         zIndex: 40,
-        pointerEvents: "auto", // enable pointer events for the navbar
+        pointerEvents: "auto",
       }}
     >
       <Toolbar
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: { xs: 1, sm: 2.5, md: 3 }, // responsive gap
+          gap: { xs: 1, sm: 2.5, md: 3 },
           alignItems: "center",
           background: "rgba(0,0,0,0.28)",
           borderRadius: 999,
@@ -32,7 +31,6 @@ export default function NavBar() {
           mx: "auto",
           width: { xs: "95%", sm: "auto" },
           minHeight: { xs: 44, sm: 56 },
-          // allow wrapping on small screens so items won't overlap
           flexWrap: "wrap",
         }}
       >
@@ -44,20 +42,24 @@ export default function NavBar() {
             textDecoration: "none",
             display: "inline-flex",
             alignItems: "center",
-            mr: { xs: 0, sm: 1 }, // small separation on larger screens
+            mr: { xs: 0, sm: 1 },
           }}
         >
           <Button
             sx={{
               color: "#6bf3d1",
-              fontWeight: 800,
+              fontWeight: 600, 
               textTransform: "none",
-              fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.05rem" },
+              fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.2rem" },
               lineHeight: 1,
               px: { xs: 1, sm: 1.25 },
               py: 0.5,
               minWidth: 56,
               whiteSpace: "nowrap",
+              transition: "transform 0.2s ease", 
+              "&:hover": {
+                transform: "scale(1.08)", 
+              },
             }}
           >
             HOME
@@ -71,11 +73,15 @@ export default function NavBar() {
           sx={{
             color: "#6bf3d1",
             textTransform: "none",
-            fontSize: { xs: "0.78rem", sm: "0.95rem" },
+            fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.2rem" },
             px: { xs: 0.8, sm: 1.25 },
             py: 0.5,
             minWidth: 56,
             whiteSpace: "nowrap",
+            transition: "transform 0.2s ease", 
+            "&:hover": {
+              transform: "scale(1.08)", 
+            },
           }}
         >
           PROJECTS
@@ -87,11 +93,15 @@ export default function NavBar() {
           sx={{
             color: "#6bf3d1",
             textTransform: "none",
-            fontSize: { xs: "0.78rem", sm: "0.95rem" },
+            fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.2rem" },
             px: { xs: 0.8, sm: 1.25 },
             py: 0.5,
             minWidth: 56,
             whiteSpace: "nowrap",
+            transition: "transform 0.2s ease", 
+            "&:hover": {
+              transform: "scale(1.08)", 
+            },
           }}
         >
           TECHSTACKS
@@ -103,11 +113,15 @@ export default function NavBar() {
           sx={{
             color: "#6bf3d1",
             textTransform: "none",
-            fontSize: { xs: "0.78rem", sm: "0.95rem" },
+            fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.2rem" },
             px: { xs: 0.8, sm: 1.25 },
             py: 0.5,
             minWidth: 56,
             whiteSpace: "nowrap",
+            transition: "transform 0.2s ease", 
+            "&:hover": {
+              transform: "scale(1.08)", 
+            },
           }}
         >
           CERTIFICATIONS
@@ -120,11 +134,15 @@ export default function NavBar() {
             color: "#6bf3d1",
             textTransform: "none",
             fontWeight: 600,
-            fontSize: { xs: "0.78rem", sm: "0.95rem" },
+            fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.2rem" },
             px: { xs: 0.8, sm: 1.25 },
             py: 0.5,
             minWidth: 56,
             whiteSpace: "nowrap",
+            transition: "transform 0.2s ease", 
+            "&:hover": {
+              transform: "scale(1.08)", 
+            },
           }}
         >
           CONTACT
