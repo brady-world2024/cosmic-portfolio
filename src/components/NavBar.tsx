@@ -48,7 +48,7 @@ export default function NavBar() {
           <Button
             sx={{
               color: "#6bf3d1",
-              fontWeight: 600, 
+              fontWeight: 600,
               textTransform: "none",
               fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.2rem" },
               lineHeight: 1,
@@ -56,9 +56,9 @@ export default function NavBar() {
               py: 0.5,
               minWidth: 56,
               whiteSpace: "nowrap",
-              transition: "transform 0.2s ease", 
+              transition: "transform 0.2s ease",
               "&:hover": {
-                transform: "scale(1.08)", 
+                transform: "scale(1.08)",
               },
             }}
           >
@@ -72,15 +72,16 @@ export default function NavBar() {
           to="/projects"
           sx={{
             color: "#6bf3d1",
+            fontWeight: 600,
             textTransform: "none",
             fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.2rem" },
             px: { xs: 0.8, sm: 1.25 },
             py: 0.5,
             minWidth: 56,
             whiteSpace: "nowrap",
-            transition: "transform 0.2s ease", 
+            transition: "transform 0.2s ease",
             "&:hover": {
-              transform: "scale(1.08)", 
+              transform: "scale(1.08)",
             },
           }}
         >
@@ -92,15 +93,16 @@ export default function NavBar() {
           to="/techstacks"
           sx={{
             color: "#6bf3d1",
+            fontWeight: 600,
             textTransform: "none",
             fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.2rem" },
             px: { xs: 0.8, sm: 1.25 },
             py: 0.5,
             minWidth: 56,
             whiteSpace: "nowrap",
-            transition: "transform 0.2s ease", 
+            transition: "transform 0.2s ease",
             "&:hover": {
-              transform: "scale(1.08)", 
+              transform: "scale(1.08)",
             },
           }}
         >
@@ -112,15 +114,16 @@ export default function NavBar() {
           to="/certifications"
           sx={{
             color: "#6bf3d1",
+            fontWeight: 600,
             textTransform: "none",
             fontSize: { xs: "0.78rem", sm: "0.95rem", md: "1.2rem" },
             px: { xs: 0.8, sm: 1.25 },
             py: 0.5,
             minWidth: 56,
             whiteSpace: "nowrap",
-            transition: "transform 0.2s ease", 
+            transition: "transform 0.2s ease",
             "&:hover": {
-              transform: "scale(1.08)", 
+              transform: "scale(1.08)",
             },
           }}
         >
@@ -139,9 +142,9 @@ export default function NavBar() {
             py: 0.5,
             minWidth: 56,
             whiteSpace: "nowrap",
-            transition: "transform 0.2s ease", 
+            transition: "transform 0.2s ease",
             "&:hover": {
-              transform: "scale(1.08)", 
+              transform: "scale(1.08)",
             },
           }}
         >
