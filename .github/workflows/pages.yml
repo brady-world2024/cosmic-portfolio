@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages (via GitHub Actions)
+
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+   
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) Setup Node 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      # 3) Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4) Build the project
+      - name: Build
+        run: npm run build
+
+      # 5) Single Page App fallback
+      - name: Make SPA fallback (copy index.html to 404.html)
+        run: |
+          if [ -d "dist" ]; then
+            cp -f dist/index.html dist/404.html || true
+          elif [ -d "build" ]; then
+            cp -f build/index.html build/404.html || true
+          else
+            echo "No build output found (dist/ or build/). Please ensure npm run build outputs to 'dist' or 'build'."
+            exit 1
+          fi
+
+      # 6) Publish to GitHub Pages using peaceiris action
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+          publish_dir: ./dist

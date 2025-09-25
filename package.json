@@ -1,0 +1,33 @@
+{
+  "name": "cosmic-portfolio-ts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cosmic themed portfolio (TypeScript) - Vite + React + @react-three/fiber",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.2",
+    "@mui/material": "^7.3.2",
+    "@react-three/drei": "^9.47.0",
+    "@react-three/fiber": "^8.12.0",
+    "framer-motion": "^12.23.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.1",
+    "three": "^0.158.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.24",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.0.0",
+    "gh-pages": "^5.0.0",
+    "typescript": "^5.5.0",
+    "vite": "^5.1.0"
+  }
+}
