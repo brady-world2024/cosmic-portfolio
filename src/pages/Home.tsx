@@ -5,8 +5,8 @@ import { Link as RouterLink } from "react-router-dom";
 import { resolvePublicPath } from "../utils/resolvePublicPath";
 
 export default function Home() {
-  const videoSrc1 = resolvePublicPath("/videos/bg-loop.mp4");
-  const videoSrc2 = resolvePublicPath("/videos/bg-loop2.mp4");
+  const videoSrc1 = resolvePublicPath("/videos/Bg-Loop.mp4");
+  const videoSrc2 = resolvePublicPath("/videos/Bg-Loop2.mp4");
 
   return (
     <Box
