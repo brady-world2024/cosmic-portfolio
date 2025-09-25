@@ -20,8 +20,8 @@ export default function Contact() {
     {
       icon: <Email />,
       label: "Email",
-      value: "hello@email",
-      link: "mailto:hello@email",
+      value: "bradyli2024@gmail.com",
+      link: "mailto:bradyli2024@gmail.com",
     },
     {
       icon: <Phone />,
