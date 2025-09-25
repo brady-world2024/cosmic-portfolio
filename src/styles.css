@@ -11,14 +11,29 @@ body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Rob
 
 .app-root{position:relative;min-height:100vh;overflow:hidden}
 
-
+/* NavBar: keep same capsule look but allow wrapping/responsive adjustments */
 .navbar{
-  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:40;display:flex;gap:18px;align-items:center;padding:10px 18px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));backdrop-filter: blur(6px);
+  position:fixed;
+  top:16px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:40;
+  display:flex;
+  gap:18px;
+  align-items:center;
+  padding:10px 18px;
+  border-radius:999px;
+  background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  backdrop-filter: blur(6px);
+  pointer-events: auto;
 }
+
+/* fallback styles for plain links (not used directly if MUI Buttons present) */
 .navbar .brand{font-weight:700;letter-spacing:1px;margin-right:6px}
 .navbar a{color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:8px}
 .navbar a.active, .navbar a:hover{color:var(--accent);background:var(--panel)}
 
+/* content container */
 .content{
   position: relative;
   z-index: 20;
@@ -33,10 +48,10 @@ body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Rob
 h1{margin:0 0 12px}
 .lead{color:var(--muted);margin-bottom:14px}
 
-
+/* Small-screen nav behavior: more vertical spacing to avoid overlap with content */
 @media (max-width:700px){
-  .navbar{gap:8px;padding:8px}
-  .content{padding-top:100px}
+  .navbar{gap:10px;padding:8px 12px}
+  .content{padding-top:120px} /* ensure content starts below navbar on phones */
 }
 
 /* canvas container should not capture pointer events for UI */
@@ -57,7 +72,7 @@ h1{margin:0 0 12px}
   overflow: visible;
 }
 
-
+/* Video windows */
 .home-video .video-window {
   position: absolute;
   width: 19vw;         
@@ -72,20 +87,18 @@ h1{margin:0 0 12px}
   animation: float 6s ease-in-out infinite;
 }
 
-
+/* left / right placement with small offsets so nav isn't covered */
 .home-video .video-left {
   left: 12vw;
   top: calc(16px + 56px);
   animation-delay: 0s; 
 }
 
-
 .home-video .video-right {
   right: 10vw;
   bottom: 6vh;
   animation-delay: 3s;
 }
-
 
 .home-video video {
   width: 100%;
@@ -94,13 +107,11 @@ h1{margin:0 0 12px}
   display: block;
 }
 
-
 @keyframes float {
   0%   { transform: translateY(0px); }
   50%  { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
-
 
 @media (max-width: 900px) {
   .home-video .video-window {

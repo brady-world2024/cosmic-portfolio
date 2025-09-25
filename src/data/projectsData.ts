@@ -3,6 +3,33 @@ import { Project } from "../app/models/project";
 
 export const projectsData: Project[] = [
   {
+    id: "proj-cvbuilder",
+    name: "CV Builder",
+    description:
+      " 'CV Builder' is a smart and simple platform designed to take the stress out of CV writing. With an intuitive interface and powerful features, it helps you transform your professional experience into a clean, impressive, two-page CV.",
+    pictureUrl: "/images/cvbuilder.jpg",
+    gitHubUrl: "https://github.com/brady-world2024/CV-Builder",
+    url: "https://master.d1t5ap8jngs8ka.amplifyapp.com/login",
+    detail: `'CV Builder' is a smart and simple platform designed to take the stress out of CV writing. With an intuitive interface and powerful features, it helps you transform your professional experience into a clean, impressive, two-page CV.
+Key features include:
+
+Quick Signup: With just a free email registration, you can start building your CV instantly—no lengthy forms, no hassle.
+
+Automatic Formatting: The tool automatically organizes your content, ensuring your CV looks polished and professional without endless reformatting.
+
+Content Guidance: Not sure what to include? CV Builder offers prompts and tips so you highlight your achievements while leaving out unnecessary details.
+
+Two-Page Optimization: Your CV is neatly condensed into a clear, concise two-page format, perfect for recruiters who skim in seconds.
+
+Privacy & Security: To protect users’ personal information, the platform does not use a database or store any personal data. All operations are performed locally, so there’s no need to worry about privacy leaks.
+
+User-Friendly Interface: Designed for speed and simplicity, the platform makes CV creation enjoyable rather than tedious.
+
+Professional Results: Whether you’re applying for internships, your first job, or your next big career move, CV Builder ensures your CV stands out.
+
+With 'CV Builder', creating a standout CV is fast, fun, and stress-free.`,
+  },
+  {
     id: "proj-myzone",
     name: "My Zone",
     description:
