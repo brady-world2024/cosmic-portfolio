@@ -5,6 +5,7 @@ import { Typography, Box, CardMedia, Button, Container } from "@mui/material";
 import { GitHub } from "@mui/icons-material";
 import { Project } from "../../app/models/project";
 import { projectsData } from "../../data/projectsData";
+import { resolvePublicPath } from "../../utils/resolvePublicPath";
 
 export default function ProjectDetails() {
   const location = useLocation();
@@ -35,26 +36,24 @@ export default function ProjectDetails() {
         sx={{
           mx: "auto",
           maxWidth: contentMaxWidth,
-          backgroundColor: "transparent", 
+          backgroundColor: "transparent",
         }}
       >
-
         {project.pictureUrl && (
           <CardMedia
             component="img"
-            image={project.pictureUrl}
+            image={resolvePublicPath(project.pictureUrl)}
             alt={project.name}
             sx={{
               width: "100%",
               height: 380,
-              objectFit: "cover", 
+              objectFit: "cover",
               borderRadius: 2,
               mb: 2,
               display: "block",
             }}
           />
         )}
-
 
         <Box sx={{ p: 0 }}>
           <Typography

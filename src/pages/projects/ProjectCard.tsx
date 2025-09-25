@@ -11,6 +11,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import { Project } from "../../app/models/project";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { resolvePublicPath } from "../../utils/resolvePublicPath";
 
 interface Props {
   project: Project;
@@ -30,43 +31,38 @@ export default function ProjectCard({ project }: Props) {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "rgba(255,255,255,0.03)", 
-        border: "1px solid rgba(255,255,255,0.06)", 
+        backgroundColor: "rgba(255,255,255,0.03)",
+        border: "1px solid rgba(255,255,255,0.06)",
         boxShadow: "none",
         borderRadius: 2,
         overflow: "hidden",
       }}
     >
-
       {project.pictureUrl && (
         <Box
           sx={{
             width: "100%",
             position: "relative",
-            pt: "100%", 
+            pt: "100%",
             bgcolor: "#061022",
           }}
         >
-      
           <Box
             component="img"
-            src={project.pictureUrl}
+            src={resolvePublicPath(project.pictureUrl)}
             alt={project.name}
             sx={{
               position: "absolute",
               inset: 0,
               width: "100%",
               height: "100%",
-              objectFit: "contain", 
+              objectFit: "contain",
               objectPosition: "center center",
               display: "block",
-          
-      
             }}
           />
         </Box>
       )}
-
 
       <CardContent
         sx={{

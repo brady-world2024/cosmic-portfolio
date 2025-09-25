@@ -1,6 +1,7 @@
 // src/pages/Certifications.tsx
 import React from "react";
 import { Box, Typography, Card, CardContent, Link } from "@mui/material";
+import { resolvePublicPath } from "../utils/resolvePublicPath";
 
 type Cert = {
   id: string;
@@ -13,14 +14,14 @@ const certs: Cert[] = [
   {
     id: "aws-arch-assoc",
     title: "AWS Certified Solutions Architect - Associate",
-    imageUrl: "/images/aws-certified-solutions-architect-associate.png",
+    imageUrl: resolvePublicPath("/images/aws-certified-solutions-architect-associate.png"),
     credlyUrl:
       "https://www.credly.com/badges/5da89a94-b8bf-415e-94eb-1f6e71f8e076/public_url",
   },
   {
     id: "aws-cloud-practitioner",
     title: "AWS Certified Cloud Practitioner",
-    imageUrl: "/images/aws-certified-cloud-practitioner.png",
+    imageUrl: resolvePublicPath("/images/aws-certified-cloud-practitioner.png"),
     credlyUrl:
       "https://www.credly.com/badges/02194a80-89d7-4222-9f08-15e1b0943a08/public_url",
   },
