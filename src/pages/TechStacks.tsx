@@ -1,6 +1,6 @@
-// src/pages/TechStack.tsx
 import React from "react";
 import { Box, Typography, Card, CardContent } from "@mui/material";
+import { resolvePublicPath } from "../utils/resolvePublicPath";
 
 interface Technology {
   name: string;
@@ -61,7 +61,7 @@ const techCategories: TechCategory[] = [
         logoUrl:
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
       },
-      { name: "Windows Forms App", logoUrl: "/images/microsoftforms.png" },
+      { name: "Windows Forms App", logoUrl: resolvePublicPath("/images/microsoftforms.png") },
     ],
   },
   {
@@ -87,7 +87,7 @@ const techCategories: TechCategory[] = [
   {
     title: "Cloud Services",
     technologies: [
-      { name: "AWS", logoUrl: "/images/aws.png" },
+      { name: "AWS", logoUrl: resolvePublicPath("/images/aws.png") },
       {
         name: "Google Cloud",
         logoUrl:
