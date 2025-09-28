@@ -1,10 +1,10 @@
 // src/components/Starfield.tsx
-import React, { useRef, useMemo, useEffect } from "react";
+import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 
-/* ---------- Star Cloud ---------- */
+
 function StarCloud({
   count = 1400,
   radius = 900,
@@ -119,35 +119,19 @@ function StarCloud({
   );
 }
 
-/* ---------- Mouse-following light with fallback ---------- */
+/* ---------- Mouse-following light ---------- */
 function MouseLight({ intensity = 1.4 }: { intensity?: number }) {
   const lightRef = useRef<THREE.PointLight | null>(null);
-  const { viewport, camera } = useThree();
-  const mouseRef = useRef({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      mouseRef.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseRef.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
-  useFrame(({ mouse }) => {
-    const hasR3fMouse = mouse.x !== 0 || mouse.y !== 0;
-    const mx = hasR3fMouse ? mouse.x : mouseRef.current.x;
-    const my = hasR3fMouse ? mouse.y : mouseRef.current.y;
-
+  const { viewport } = useThree();
+  useFrame(({ mouse, camera }) => {
     if (lightRef.current) {
-      const x = (mx * viewport.width) / 2;
-      const y = (my * viewport.height) / 2;
+      const x = (mouse.x * viewport.width) / 2;
+      const y = (mouse.y * viewport.height) / 2;
       const vec = new THREE.Vector3(x, y, 180);
       vec.unproject(camera);
       lightRef.current.position.lerp(vec, 0.14);
     }
   });
-
   return (
     <pointLight
       ref={lightRef}
@@ -158,7 +142,8 @@ function MouseLight({ intensity = 1.4 }: { intensity?: number }) {
   );
 }
 
-/* ---------- Shooting Stars ---------- */
+/* ---------- Shooting stars system ( onCreated -> ref) ---------- */
+
 type ShootingStarDef = {
   position: THREE.Vector3;
   direction: THREE.Vector3;
@@ -172,13 +157,17 @@ type ShootingStarDef = {
 function ShootingStars({ count = 8 }: { count?: number }) {
   const groupRef = useRef<THREE.Group | null>(null);
 
+
   const stars = useMemo(() => {
     const arr: ShootingStarDef[] = [];
     for (let i = 0; i < count; i++) arr.push(randomStar());
     return arr;
   }, [count]);
 
+
   const planeGeometry = useMemo(() => new THREE.PlaneGeometry(0.8, 1), []);
+
+
   const baseMaterial = useMemo(
     () =>
       new THREE.MeshBasicMaterial({
@@ -190,6 +179,7 @@ function ShootingStars({ count = 8 }: { count?: number }) {
       }),
     []
   );
+
 
   function randomStar(): ShootingStarDef {
     const x = (Math.random() - 0.5) * 1600;
@@ -210,6 +200,7 @@ function ShootingStars({ count = 8 }: { count?: number }) {
     };
   }
 
+
   useFrame((_, delta) => {
     const g = groupRef.current;
     if (!g) return;
@@ -217,6 +208,7 @@ function ShootingStars({ count = 8 }: { count?: number }) {
       const s = stars[i];
       s.life += delta;
       if (s.life >= s.ttl) {
+        // reset
         const next = randomStar();
         stars[i] = next;
         if (s.mesh) {
@@ -226,6 +218,7 @@ function ShootingStars({ count = 8 }: { count?: number }) {
         }
         continue;
       }
+      // move
       const move = s.direction.clone().multiplyScalar(s.speed * delta);
       s.position.add(move);
       const t = s.life / s.ttl;
@@ -236,7 +229,8 @@ function ShootingStars({ count = 8 }: { count?: number }) {
         s.mesh.scale.set(1, len / 10, 1);
         const mat = s.mesh.material as THREE.MeshBasicMaterial;
         if (mat) {
-          mat.opacity = Math.max(0, 1 - t);
+          mat.opacity = Math.max(0, 1 - t); // fade out
+          // subtle head color shift (HSL) for nicer look
           mat.color.setHSL(0.6 - 0.25 * t, 1.0, 0.8 - 0.4 * t);
         }
       }
@@ -246,7 +240,9 @@ function ShootingStars({ count = 8 }: { count?: number }) {
   return (
     <group ref={groupRef}>
       {stars.map((s, idx) => {
+
         const mat = baseMaterial.clone();
+
         return (
           <mesh
             key={idx}
@@ -254,6 +250,7 @@ function ShootingStars({ count = 8 }: { count?: number }) {
             material={mat}
             position={s.position.clone()}
             ref={(mesh: THREE.Mesh | null) => {
+
               s.mesh = mesh;
               if (mesh) {
                 mesh.lookAt(s.position.clone().add(s.direction));
@@ -267,17 +264,12 @@ function ShootingStars({ count = 8 }: { count?: number }) {
   );
 }
 
-/* ---------- Starfield Component ---------- */
+
+
 export default function Starfield() {
   return (
-    <div className="canvas-wrap">
+    <div className="canvas-wrap" style={{ pointerEvents: "none" }}>
       <Canvas
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 2,
-          pointerEvents: "auto",
-        }}
         camera={{ position: [0, 0, 250], fov: 55 }}
         gl={{ antialias: true, alpha: true }}
         dpr={Math.min(

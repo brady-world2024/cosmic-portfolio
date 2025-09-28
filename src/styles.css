@@ -61,7 +61,7 @@ h1{margin:0 0 12px}
   position: fixed;
   inset: 0;
   z-index: 2;       
-  /* pointer-events: none; */
+  pointer-events: none;
 }
 
 .home-video {
