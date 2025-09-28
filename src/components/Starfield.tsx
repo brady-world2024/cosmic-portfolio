@@ -142,7 +142,7 @@ function MouseLight({ intensity = 1.4 }: { intensity?: number }) {
   );
 }
 
-/* ---------- Shooting stars system (修正 onCreated -> ref) ---------- */
+/* ---------- Shooting stars system ( onCreated -> ref) ---------- */
 
 type ShootingStarDef = {
   position: THREE.Vector3;
@@ -268,7 +268,8 @@ function ShootingStars({ count = 8 }: { count?: number }) {
 
 export default function Starfield() {
   return (
-    <div className="canvas-wrap" style={{ pointerEvents: "none" }}>
+    <div className="canvas-wrap" > 
+    {/* style={{ pointerEvents: "none" }} */}
       <Canvas
         camera={{ position: [0, 0, 250], fov: 55 }}
         gl={{ antialias: true, alpha: true }}
