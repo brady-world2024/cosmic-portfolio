@@ -1,0 +1,24 @@
+.tech-stack {
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.tech-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+
+.tech-canvas {
+  width: 100%;
+  position: relative;
+  height: auto;  
+  overflow: hidden;
+}
+
+
+.tech-canvas, .content, .app-root {
+  transform: none !important;
+}
