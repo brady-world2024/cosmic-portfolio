@@ -267,7 +267,7 @@ export default function TechStacks(): JSX.Element {
       );
       World.add(engine.world, [ground, leftWall, rightWall]);
 
-      const tileSize = Math.min(56, Math.max(40, Math.floor(cssWidth / 12)));
+      const tileSize = Math.min(80, Math.max(60, Math.floor(cssWidth / 10)));
 
       const bodies = techs.map((t, i) => {
         const img = loadedImages[i];
