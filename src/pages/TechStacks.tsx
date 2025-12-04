@@ -15,15 +15,16 @@ import Matter, {
 import { Box, Typography } from "@mui/material";
 import { resolvePublicPath } from "../utils/resolvePublicPath";
 
-
 interface Technology {
   name: string;
   logoUrl: string;
 }
+
 interface TechCategory {
   title: string;
   technologies: Technology[];
 }
+
 const techCategories: TechCategory[] = [
   {
     title: "Programming Languages",
@@ -166,25 +167,11 @@ const techCategories: TechCategory[] = [
     ],
   },
 ];
-/* ----------------------------- */
 
 export default function TechStacks(): JSX.Element {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const overlayRef = useRef<HTMLImageElement | null>(null);
   const engineRef = useRef<Engine | null>(null);
   const renderRef = useRef<Render | null>(null);
-
-
-  function removeOverlay() {
-    if (overlayRef.current) {
-      try {
-        overlayRef.current.remove();
-      } catch (e) {
-
-      }
-      overlayRef.current = null;
-    }
-  }
 
   useEffect(() => {
     let mounted = true;
@@ -193,20 +180,22 @@ export default function TechStacks(): JSX.Element {
 
     (async () => {
 
-      const navReserve = 120;
-      const cssWidth = Math.max(
-        360,
-        container.clientWidth || window.innerWidth
-      );
-      const cssHeight = Math.max(
-        360,
-        Math.floor(window.innerHeight - navReserve)
-      );
-      container.style.height = `${cssHeight}px`;
+      const computeSize = () => {
+        const rect = container.getBoundingClientRect();
+        const cssWidth = Math.max(320, rect.width || window.innerWidth);
+        const cssHeight = Math.max(
+          260,
+          rect.height || window.innerHeight * 0.5
+        );
+        return { cssWidth, cssHeight };
+      };
+
+      const { cssWidth, cssHeight } = computeSize();
       container.style.overflow = "hidden";
 
-
       const techs = techCategories.flatMap((c) => c.technologies);
+
+
       const loadedImages: HTMLImageElement[] = await Promise.all(
         techs.map((t) => {
           return new Promise<HTMLImageElement>((resolve) => {
@@ -217,6 +206,7 @@ export default function TechStacks(): JSX.Element {
           });
         })
       );
+
       if (!mounted) return;
 
       const engine = Engine.create();
@@ -300,7 +290,6 @@ export default function TechStacks(): JSX.Element {
 
       World.add(engine.world, bodies);
 
-      // ---------- mouse + constraint ----------
       const mouse = Mouse.create(render.canvas);
       render.canvas.setAttribute("draggable", "false");
       render.canvas.addEventListener("dragstart", (e) => e.preventDefault());
@@ -317,44 +306,7 @@ export default function TechStacks(): JSX.Element {
       });
       World.add(engine.world, mouseConstraint);
 
-
-      const createOverlay = (body: Body) => {
-        removeOverlay();
-        const img = document.createElement("img");
-        img.draggable = false;
-        img.ondragstart = (e) => e.preventDefault();
-        img.style.position = "fixed";
-        img.style.pointerEvents = "none";
-        img.style.zIndex = "9999";
-        img.style.willChange = "left,top,transform,width,height";
-        img.style.filter = "drop-shadow(0 8px 24px rgba(0,0,0,0.45))";
-        img.style.width = `${tileSize}px`;
-        img.style.height = `${tileSize}px`;
-        img.style.transform = "translate(-50%,-50%)";
-        img.style.borderRadius = "6px";
-        const tex =
-          (body.render.sprite && (body.render.sprite as any).texture) || "";
-        img.src = tex;
-        document.body.appendChild(img);
-        overlayRef.current = img;
-      };
-
-
-      Events.on(engine, "beforeUpdate", () => {
-        const img = overlayRef.current;
-        if (!img) return;
-        const m = mouse.position;
-        const rect = render.canvas.getBoundingClientRect();
-        const cssX = rect.left + m.x;
-        const cssY = rect.top + m.y;
-        img.style.left = `${cssX}px`;
-        img.style.top = `${cssY}px`;
-        const dragging = (mouseConstraint as any).body as Body | null;
-        if (dragging)
-          img.style.transform = `translate(-50%,-50%) rotate(${dragging.angle}rad)`;
-        else img.style.transform = `translate(-50%,-50%)`;
-      });
-
+     
       const updateCursorByHover = () => {
         const found = Query.point(
           Composite.allBodies(engine.world),
@@ -368,28 +320,11 @@ export default function TechStacks(): JSX.Element {
         passive: true,
       });
 
-
-      Events.on(mouseConstraint, "startdrag", (ev: any) => {
-        const b: Body = ev.body;
-        if (!b) return;
-        b.render.visible = false;
-        (b as any).__oldFrictionAir = b.frictionAir;
-        b.frictionAir = 0.12;
-        createOverlay(b);
+      Events.on(mouseConstraint, "startdrag", () => {
         render.canvas.style.cursor = "grabbing";
       });
 
-
-      Events.on(mouseConstraint, "enddrag", (ev: any) => {
-        const b: Body | null = ev.body ?? (mouseConstraint as any).body;
-        if (b) {
-          b.render.visible = true;
-          if ((b as any).__oldFrictionAir !== undefined) {
-            b.frictionAir = (b as any).__oldFrictionAir;
-            delete (b as any).__oldFrictionAir;
-          }
-        }
-        removeOverlay();
+      Events.on(mouseConstraint, "enddrag", () => {
         render.canvas.style.cursor = "default";
       });
 
@@ -410,15 +345,8 @@ export default function TechStacks(): JSX.Element {
         }
       });
 
-
       const handleResize = () => {
-        const newW = Math.max(360, container.clientWidth || window.innerWidth);
-        const navReserve2 = 120;
-        const newH = Math.max(
-          320,
-          Math.floor(window.innerHeight - navReserve2)
-        );
-        container.style.height = `${newH}px`;
+        const { cssWidth: newW, cssHeight: newH } = computeSize();
         render.canvas.style.width = `${newW}px`;
         render.canvas.style.height = `${newH}px`;
         render.canvas.width = newW;
@@ -443,7 +371,6 @@ export default function TechStacks(): JSX.Element {
       };
       window.addEventListener("resize", handleResize);
 
-    
       if (!mounted) return;
       return;
     })();
@@ -451,12 +378,8 @@ export default function TechStacks(): JSX.Element {
     return () => {
       mounted = false;
       try {
-        removeOverlay();
         const engine = engineRef.current;
         const render = renderRef.current;
-        if (render && render.canvas) {
-          // remove event listeners
-        }
         window.removeEventListener("resize", () => {});
         if (engine) {
           World.clear(engine.world, false);
@@ -473,16 +396,34 @@ export default function TechStacks(): JSX.Element {
         /* ignore cleanup errors */
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Box
-      sx={{ px: { xs: 2, md: 4 }, py: { xs: 3, md: 4 }, textAlign: "center" }}
+      className="tech-stack"
+      sx={{
+        width: "100%",
+        height: "100vh", 
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        pt: "96px", 
+        pb: 2,
+        px: { xs: 2, md: 4 },
+        textAlign: "center",
+        boxSizing: "border-box",
+      }}
     >
       <Typography
-        variant="h3"
-        sx={{ color: "#90caf9", fontWeight: 700, mb: 3 }}
+        variant="h4" 
+        sx={{
+          color: "#90caf9",
+          fontWeight: 700,
+          mb: 2,
+          fontSize: { xs: "1.6rem", md: "2.1rem" },
+        }}
       >
         A full stack software engineer
       </Typography>
@@ -492,6 +433,8 @@ export default function TechStacks(): JSX.Element {
         className="tech-canvas"
         sx={{
           width: "100%",
+          maxWidth: "960px",
+          flex: 1, 
           mx: "auto",
           borderRadius: 1,
           background: "transparent",

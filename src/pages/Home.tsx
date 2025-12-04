@@ -12,11 +12,12 @@ export default function Home() {
       sx={{
         position: "relative",
         width: "100%",
-        minHeight: "100vh",
-        overflow: "hidden",
+        height: "100vh", 
+        overflow: "hidden", 
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-
       <Box className="home-video" aria-hidden="true">
         <Box className="video-window video-left" role="presentation">
           <video
@@ -40,7 +41,6 @@ export default function Home() {
         </Box>
       </Box>
 
-
       <Box
         sx={{
           position: "fixed",
@@ -51,7 +51,6 @@ export default function Home() {
           pointerEvents: "none",
         }}
       />
-
 
       <Container
         sx={{
