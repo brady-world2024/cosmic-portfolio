@@ -71,7 +71,15 @@ export default function ProjectDetails() {
             {project.detail ?? project.description}
           </Typography>
 
-          <Box sx={{ mt: 2, display: "flex", gap: 2 }}>
+          <Box
+            sx={{
+              mt: 3,
+              display: "flex",
+              gap: 1.5,
+              flexWrap: "wrap",
+              alignItems: "center",
+            }}
+          >
             {project.gitHubUrl && (
               <Button
                 component="a"
@@ -80,28 +88,24 @@ export default function ProjectDetails() {
                 rel="noopener noreferrer"
                 variant="contained"
                 startIcon={<GitHub />}
-                sx={{ textTransform: "none", fontSize: "0.9rem" }}
+                sx={{
+                  textTransform: "none",
+                  fontSize: "0.9rem",
+                  px: 2.5,
+                  py: 0.8,
+                }}
               >
                 Code
               </Button>
             )}
 
-            {project.url && (
-              <Button
-                component="a"
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="outlined"
-                sx={{ textTransform: "none", fontSize: "0.9rem" }}
-              >
-                Experience Now
-              </Button>
-            )}
-
             <Button
               onClick={() => navigate("/projects")}
-              sx={{ fontSize: "0.9rem" }}
+              sx={{
+                fontSize: "0.9rem",
+                textTransform: "none",
+                opacity: 0.9,
+              }}
             >
               Back
             </Button>
