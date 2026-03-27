@@ -48,7 +48,7 @@ With 'CV Builder', creating a standout CV is fast, fun, and stress-free.`,
     description:
       "'My Zone' is a website that offers a dynamic and interactive platform with a wide range of features aimed at providing an engaging user experience. The website is divided into 14 distinct sections, each catering to specific content categories. After registering, users can post content in their respective sections, including text, images, and more.",
     pictureUrl: "/images/myzone.jpg",
-    gitHubUrl: "https://github.com/brady-world2024/myZonePrivate",
+    gitHubUrl: "https://github.com/brady-world2024/MyZone",
     url: "http://3.88.10.109/",
     detail: `'My Zone' is a website that offers a dynamic and interactive platform with a wide range of features aimed at providing an engaging user experience. The website is divided into 14 distinct sections, each catering to specific content categories. After registering, users can post content in their respective sections, including text, images, and more.
 
