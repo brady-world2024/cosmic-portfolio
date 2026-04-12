@@ -8,7 +8,7 @@ export const projectsData: Project[] = [
     description:
       "'PaperVest' is a production-minded paper trading monorepo for US stocks, combining a Spring Boot backend, coordinated web and mobile frontends, and shared TypeScript packages.",
     pictureUrl: "/images/papervestlogo.jpg",
-    gitHubUrl: "https://github.com/brady-world2024/PaperVest",
+    gitHubUrl: "https://github.com/brady-world2024/PaperVestProject",
     detail: `'PaperVest' is a production-minded paper trading monorepo for US stocks. It brings together a Spring Boot backend, a Next.js web app, an Expo React Native mobile app, and shared TypeScript packages for API contracts, validation, and design tokens.
 
 The backend acts as the single source of truth for authentication, market data integration, portfolio calculations, and trade execution rules, while the mobile and web clients share a typed foundation but keep platform-specific user experiences.
