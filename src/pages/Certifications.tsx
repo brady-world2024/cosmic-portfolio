@@ -29,7 +29,7 @@ const certs: Cert[] = [
 
 export default function Certifications() {
   return (
-    <Box sx={{ pt: 8, pb: 6, px: 2 }}>
+    <Box sx={{ pt: { xs: 14, sm: 15, md: 17 }, pb: 6, px: 2 }}>
 
       <Box
         sx={{
