@@ -1,5 +1,4 @@
 // src/pages/projects/ProjectList.tsx
-import React from "react";
 import { Box } from "@mui/material";
 import { Project } from "../../app/models/project";
 import ProjectCard from "./ProjectCard";

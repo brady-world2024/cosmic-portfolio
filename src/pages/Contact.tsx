@@ -1,5 +1,4 @@
 // src/pages/Contact.tsx
-import React from "react";
 import { Container, Box, Link, Typography } from "@mui/material";
 import { GitHub, Email } from "@mui/icons-material";
 

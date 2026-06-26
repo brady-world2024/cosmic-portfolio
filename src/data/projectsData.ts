@@ -3,6 +3,32 @@ import { Project } from "../app/models/project";
 
 export const projectsData: Project[] = [
   {
+    id: "proj-marketmindai",
+    name: "MarketMindAI",
+    description:
+      "'MarketMindAI' is an AI-powered multi-agent equity research platform that transforms a stock idea into a traceable, evidence-backed analysis and trading recommendation.",
+    pictureUrl: "/images/marketMindAI.png",
+    gitHubUrl: "https://github.com/brady-world2024/MarketMindAI",
+    detail: `'MarketMindAI' is an AI-powered multi-agent equity research platform built to turn a simple stock idea into a structured, explainable, and evidence-backed trading report.
+
+The system orchestrates specialized agents across market analysis, sentiment, news, fundamentals, bull and bear research, risk review, and portfolio decision-making. It validates tickers, checks data availability up front, and combines signals from price history, technical indicators, macro news, SEC filings, and earnings transcripts so every conclusion is grounded in auditable inputs.
+
+The platform supports both offline and live-provider modes, runs through a CLI or browser-based interface, and preserves checkpoints, run history, memory, evaluation summaries, and state logs for later review. As a portfolio project, it highlights multi-agent system design, financial research automation, and explainable AI workflows with strong engineering discipline.`,
+  },
+  {
+    id: "proj-qagent",
+    name: "QAgent",
+    description:
+      "'QAgent' is a local-first AI QA platform that turns product changes into structured risk analysis, test plans, execution evidence, and release-readiness reports.",
+    pictureUrl: "/images/qagent.png",
+    gitHubUrl: "https://github.com/brady-world2024/QAgent",
+    detail: `'QAgent' is a local-first AI QA platform designed to convert feature requests, git diffs, repository structure, and test results into actionable QA intelligence.
+
+It combines a TypeScript CLI, a Next.js dashboard, a reusable traceability engine, multi-framework test generation, and an optional multi-agent QA Team workflow. The system can inspect repositories, analyze pull requests, map risks to test coverage, recommend the smallest meaningful regression set, generate staged tests for frameworks like Vitest, Playwright, Pytest, xUnit, and JUnit, and classify failures into likely product, flaky, or environment causes.
+
+Its safety model is intentionally conservative: generated tests are staged before apply, risky actions require approval, destructive commands are blocked, and the dashboard remains local-first. That makes QAgent a strong showcase of QA automation, developer tooling, release governance, and agent-assisted engineering workflows.`,
+  },
+  {
     id: "proj-papervest",
     name: "PaperVest",
     description:

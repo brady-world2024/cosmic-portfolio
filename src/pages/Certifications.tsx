@@ -1,5 +1,4 @@
 // src/pages/Certifications.tsx
-import React from "react";
 import { Box, Typography, Card, CardContent, Link } from "@mui/material";
 import { resolvePublicPath } from "../utils/resolvePublicPath";
 

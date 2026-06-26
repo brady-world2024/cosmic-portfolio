@@ -1,5 +1,4 @@
 // src/pages/projects/ProjectDetails.tsx
-import React from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { Typography, Box, CardMedia, Button, Container } from "@mui/material";
 import { GitHub } from "@mui/icons-material";

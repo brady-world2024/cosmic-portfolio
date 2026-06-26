@@ -1,5 +1,4 @@
 // src/pages/projects/ProjectCard.tsx
-import React from "react";
 import {
   Button,
   Card,
